@@ -1,4 +1,4 @@
-import Menu from "../home/navbar";
+import Menu from "../front/navbar";
 
 export default function HeaderLayout() {
   return (
