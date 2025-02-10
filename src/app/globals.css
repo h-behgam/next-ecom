@@ -1,10 +1,16 @@
 @tailwind base;
 @tailwind components;
+.container-home {
+  @apply max-w-screen-2xl mx-auto container;
+}
 @tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --main-padding: 8px;
+  --main-padding-y: 8px 0px;
+  --main-padding-x: 0px 8px;
 }
 
 @media (prefers-color-scheme: dark) {
