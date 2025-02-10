@@ -12,6 +12,15 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      padding: {
+        main_padding: "var(--main-padding)",
+        main_padding_y: "var(--main-padding-y)",
+        main_padding_x: "var(--main-padding-x)",
+      },
+      fontFamily: {
+        vaziri: ["var(--font-vazir)"],
+        iranSans: ["var(--iranSans)"],
+      },
     },
   },
   plugins: [],
