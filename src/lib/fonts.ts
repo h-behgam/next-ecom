@@ -3,7 +3,7 @@ import localfont from "next/font/local";
 export const vaziri = localfont({
   src: "../../public/assets/fonts/ttf/vazirmatn-vf.ttf",
   style: "normal",
-  weight: "400",
+  weight: "100 900",
   variable: "--font-vazir",
 });
 export const iranSans = localfont({
