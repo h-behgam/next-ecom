@@ -6,3 +6,10 @@ export type Product = {
   price: number;
   stock: number;
 };
+
+export interface IBestSellingProducts {
+  id: number;
+  name: string;
+  image: string;
+  link: string;
+}
