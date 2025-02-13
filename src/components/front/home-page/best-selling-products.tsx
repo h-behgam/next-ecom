@@ -1,16 +1,10 @@
 import Container from '@/components/ui/container';
-import { IBestSellingProducts } from '@/types/products-type';
+import { bestProducts } from '@/constants/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 export default function BestSellingProducts() {
-  const products: IBestSellingProducts[] = [
-    { id: 1, name: 'Product 1', image: '/assets/images/best1.webp', link: '#' },
-    { id: 2, name: 'Product 2', image: '/assets/images/best2.webp', link: '#' },
-    { id: 3, name: 'Product 3', image: '/assets/images/best3.webp', link: '#' },
-    { id: 4, name: 'Product 4', image: '/assets/images/best4.webp', link: '#' },
-  ];
   return (
     <Container>
       <div className='flex flex-col gap-4'>
@@ -18,7 +12,7 @@ export default function BestSellingProducts() {
           خرید بر اساس دسته بندی
         </h2>
         <div className='grid auto-cols-fr grid-cols-1 gap-4 lg:grid-cols-2'>
-          {products.map((product) => (
+          {bestProducts.map((product) => (
             <Link
               href={product.link}
               key={product.id}
