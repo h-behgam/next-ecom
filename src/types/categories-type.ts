@@ -1,4 +1,4 @@
-interface CategoriesType {
+export interface CategoriesType {
   id: number;
   name: string;
   description?: string;
