@@ -9,7 +9,7 @@ export default function DesktopMenu() {
         </Link>
       </li>
       <li>
-        <Link href={"/"} className="p-4 block">
+        <Link href={"/products"} className="p-4 block">
           محصولات
         </Link>
       </li>
