@@ -1,5 +1,5 @@
 import { products } from '@/constants/products';
-import Cart from '../home-page/cart';
+import Cart from '../cart';
 
 export default function ProductsList() {
   return (
