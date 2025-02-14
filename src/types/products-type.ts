@@ -13,3 +13,10 @@ export interface IBestSellingProducts {
   image: string;
   link: string;
 }
+
+export interface IBrands {
+  id: number;
+  name: string;
+  image: string;
+  link: string;
+}
