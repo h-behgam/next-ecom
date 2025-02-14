@@ -3,7 +3,7 @@ import Cart from '../home-page/cart';
 
 export default function ProductsList() {
   return (
-    <div className='mt-5 flex justify-center gap-x-1'>
+    <div className='mt-5 flex justify-center gap-x-1 flex-wrap mb-6 sm:mb-0'>
       {products?.map((product) => {
         return (
           <Cart
