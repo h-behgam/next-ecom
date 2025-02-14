@@ -17,13 +17,14 @@ export default function Cart({
     <Link href={'#'}>
       <div
         className={cn(
-          'flex h-80 w-48 flex-col items-center border-b border-l border-slate-100 p-2 text-sm/5',
+          'mb-6 flex h-80 w-48 flex-col items-center border-b border-l border-slate-100 p-2 text-sm/5 sm:mb-0',
           {
             'w-40': isHomePage,
             'h-64': isHomePage,
             'rounded-md': isHomePage,
             'border-0': isHomePage,
-            'bg-slate-50': isHomePage
+            'bg-slate-50': isHomePage,
+            'mb-0': isHomePage,
           },
         )}
       >
