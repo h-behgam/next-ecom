@@ -4,17 +4,21 @@ import { Product } from '@/types/products-type';
 import Image from 'next/image';
 import Link from 'next/link';
 
-type CartProps = Omit<Product, 'id' | 'name' | 'stock'> & {
+type CartProps = Omit<
+  Product,
+  'name' | 'stock' | 'features' | 'rate' | 'enName'
+> & {
   isHomePage: boolean;
 };
 export default function Cart({
+  id,
   description,
   price,
   image,
   isHomePage,
 }: CartProps) {
   return (
-    <Link href={'#'}>
+    <Link href={`/products/${id}`}>
       <div
         className={cn(
           'mb-6 flex h-80 w-48 flex-col items-center border-b border-l border-slate-100 p-2 text-sm/5 sm:mb-0',
@@ -39,14 +43,17 @@ export default function Cart({
         </div>
 
         <div className='h-24'>
-          <p className='mb-4 text-slate-700'>{description}</p>
+          <p className='mb-4 text-slate-700'>
+            {description.slice(0, 35)}
+            {'...'}
+          </p>
           {!isHomePage && (
             <div className='mb-3 flex items-center justify-end'>
               <span className='ml-1'>{e2p(4.36)}</span>
               <Image
                 src={'/assets/images/star-icon.svg'}
                 alt='star'
-                className=''
+                className='w-4 h-4'
                 width={16}
                 height={16}
               />
