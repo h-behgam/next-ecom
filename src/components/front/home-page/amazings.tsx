@@ -32,6 +32,7 @@ export default function Amazings() {
           {products?.map((product) => {
             return (
               <Cart
+                id={product.id}
                 description={product.description}
                 price={product.price}
                 image={product.image}
