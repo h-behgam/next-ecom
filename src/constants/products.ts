@@ -10,7 +10,7 @@ export const products: Product[] = [
     price: 12000000,
     stock: 5,
     image: '/assets/images/product2.webp',
-    rate: 405,
+    rate: 4.5,
     features: [
       { title: 'فناوری صفحه‌ نمایش', description: 'Super AMOLED' },
       { title: 'نسخه سیستم عامل', description: 'Android 14' },
@@ -28,7 +28,7 @@ export const products: Product[] = [
     price: 12000000,
     stock: 5,
     image: '/assets/images/product3.webp',
-    rate: 405,
+    rate: 4.5,
     features: [
       { title: 'فناوری صفحه‌ نمایش', description: 'Super AMOLED' },
       { title: 'نسخه سیستم عامل', description: 'Android 14' },
@@ -46,7 +46,7 @@ export const products: Product[] = [
     price: 12000000,
     stock: 5,
     image: '/assets/images/product4.webp',
-    rate: 405,
+    rate: 4.5,
     features: [
       { title: 'فناوری صفحه‌ نمایش', description: 'Super AMOLED' },
       { title: 'نسخه سیستم عامل', description: 'Android 14' },
@@ -64,7 +64,7 @@ export const products: Product[] = [
     price: 12000000,
     stock: 5,
     image: '/assets/images/product1.webp',
-    rate: 405,
+    rate: 4.5,
     features: [
       { title: 'فناوری صفحه‌ نمایش', description: 'Super AMOLED' },
       { title: 'نسخه سیستم عامل', description: 'Android 14' },
@@ -82,7 +82,7 @@ export const products: Product[] = [
     price: 12000000,
     stock: 5,
     image: '/assets/images/product2.webp',
-    rate: 405,
+    rate: 4.5,
     features: [
       { title: 'فناوری صفحه‌ نمایش', description: 'Super AMOLED' },
       { title: 'نسخه سیستم عامل', description: 'Android 14' },
@@ -100,7 +100,7 @@ export const products: Product[] = [
     price: 12000000,
     stock: 5,
     image: '/assets/images/product3.webp',
-    rate: 405,
+    rate: 4.5,
     features: [
       { title: 'فناوری صفحه‌ نمایش', description: 'Super AMOLED' },
       { title: 'نسخه سیستم عامل', description: 'Android 14' },
@@ -118,7 +118,7 @@ export const products: Product[] = [
     price: 12000000,
     stock: 5,
     image: '/assets/images/product4.webp',
-    rate: 405,
+    rate: 4.5,
     features: [
       { title: 'فناوری صفحه‌ نمایش', description: 'Super AMOLED' },
       { title: 'نسخه سیستم عامل', description: 'Android 14' },
