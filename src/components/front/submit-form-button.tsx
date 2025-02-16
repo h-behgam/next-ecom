@@ -8,8 +8,8 @@ export default function SubmitFormButton({
   onClick,
 }: {
   // classname?: React.CSSProperties;
-  classname?: any;
-  onClick?: any;
+  classname?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode;
 }) {
   const { pending } = useFormStatus();
@@ -18,7 +18,7 @@ export default function SubmitFormButton({
     <button
       type='submit'
       disabled={pending}
-      onClick={onClick ? onClick : null}
+      onClick={onClick}
       className={cn(
         'bg-second_color hover:bg-hover_color rounded-lg px-7 py-2 text-white duration-300 disabled:bg-gray-400',
         classname,
