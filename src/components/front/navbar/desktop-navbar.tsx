@@ -1,35 +1,25 @@
 import Link from 'next/link';
 
-export default function DesktopMenu() {
+export default function DesktopMenu({ menus }: { menus: Imenu[] }) {
   return (
     <nav className='container-home hidden md:block'>
       <div className='flex justify-between'>
         <div className=''>
           <ul className='flex gap-x-3'>
-            <li>
-              <Link href={'/'} className='block p-4'>
-                خانه
-              </Link>
-            </li>
-            <li>
-              <Link href={'/products'} className='block p-4'>
-                محصولات
-              </Link>
-            </li>
-            <li>
-              <Link href={'/'} className='block p-4'>
-                تماس باما
-              </Link>
-            </li>
+            {menus?.map((menu) => {
+              return (
+                <li key={menu.id}>
+                  <Link href={menu.link} className='block p-4'>
+                    {menu.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
-        <ul className='mr-auto'>
-          <li>
-            <Link className='block p-4' href={'/'}>
-              ورود
-            </Link>
-          </li>
-        </ul>
+        <Link className='mr-auto block p-4' href={'/'}>
+          ورود
+        </Link>
       </div>
     </nav>
   );
