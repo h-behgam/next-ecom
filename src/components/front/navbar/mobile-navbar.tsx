@@ -4,7 +4,13 @@ import { useState } from 'react';
 import MobileItems from './mobile-items';
 import { cn } from '@/lib/tailwind-helper';
 
-export default function MobileNavbar() {
+export type MobileMenu = {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  menus: Imenu[];
+};
+
+export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <div className='relative block h-full md:hidden'>
@@ -28,16 +34,13 @@ export default function MobileNavbar() {
           />
         </a>
       </header>
-      {/* <div className={cn('absolute w-0 bg-slate-50 duration-500 h-dvh',
-        {'w-1/2': isOpen}
-      )}> */}
       <div
         className={cn(
-          `fixed left-0 h-dvh w-2/3 -translate-x-full transform bg-slate-50 shadow-lg transition-transform duration-500 ease-in-out`,
+          `fixed left-0 h-dvh w-2/3 -translate-x-full transform bg-white shadow-lg transition-transform duration-500 ease-in-out`,
           { 'translate-x-0': isOpen },
         )}
       >
-        {isOpen && <MobileItems isOpen />}
+        {isOpen && <MobileItems setIsOpen={setIsOpen} isOpen menus={menus} />}
       </div>
     </div>
   );
