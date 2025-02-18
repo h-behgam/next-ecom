@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import MobileItems from './mobile-items';
 import { cn } from '@/lib/tailwind-helper';
+import { Imenu } from '@/types/menu-type';
 
 export type MobileMenu = {
   isOpen: boolean;
@@ -12,6 +13,16 @@ export type MobileMenu = {
 
 export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    // جلوگیری از اسکرول هنگام باز بودن منو با استفاده از useLayoutEffect
+    useLayoutEffect(() => {
+        document.body.classList.toggle('overflow-hidden', isOpen);
+        // پاک‌سازی هنگام خروج از کامپوننت
+        return () => {
+          if (isOpen) document.body.classList.remove('overflow-hidden');
+        };
+      }, [isOpen]);
+
   return (
     <div className='relative block h-full md:hidden'>
       <header className='flex items-center justify-between p-4'>
