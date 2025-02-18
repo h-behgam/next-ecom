@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { MobileMenu } from './mobile-navbar';
+import { Imenu } from '@/types/menu-type';
 
 export default function MobileItems({
   isOpen,
@@ -57,7 +58,7 @@ export default function MobileItems({
           {menu.subMenu && activeMenu === menu.id && (
             <MobileItems
               isOpen={isOpen}
-              menus={menu.subMenu}
+              menus={menu.subMenu as unknown as Imenu[]}
               setIsOpen={setIsOpen}
               isRoot={false}
             />
