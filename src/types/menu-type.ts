@@ -1,8 +1,12 @@
-interface Imenu {
+// type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
+import { Prisma } from '@prisma/client';
+
+export interface Imenu {
   id: number;
   name: string;
-  description?: string;
+  description?: string | null;
   link: string;
   position?: number;
-  subMenu?: Imenu[];
+  subMenu?: Prisma.JsonValue | null;
 }
+
