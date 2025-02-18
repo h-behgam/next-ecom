@@ -3,17 +3,24 @@ import Link from 'next/link';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { MobileMenu } from './mobile-navbar';
 
-export default function MobileItems({ isOpen, menus, setIsOpen }: MobileMenu) {
-  // جلوگیری از اسکرول هنگام باز بودن منو با استفاده از useLayoutEffect
+export default function MobileItems({
+  isOpen,
+  menus,
+  setIsOpen,
+  isRoot = true,
+}: MobileMenu & { isRoot?: boolean }) {
+  // کنترل اسکرول فقط در سطح ریشه
   useLayoutEffect(() => {
-    document.body.classList.toggle('overflow-hidden', isOpen);
-    // پاک‌سازی هنگام خروج از کامپوننت
-    return () => {
-      if (isOpen) document.body.classList.remove('overflow-hidden');
-    };
-  }, [isOpen]);
+    if (isRoot) {
+      if (isOpen) {
+        document.body.classList.add('overflow-hidden');
+      } else {
+        document.body.classList.remove('overflow-hidden');
+      }
+      return () => document.body.classList.remove('overflow-hidden');
+    }
+  }, [isOpen, isRoot]);
 
-  // مدیریت وضعیت باز/بسته بودن ساب‌منوها
   const [activeMenu, setActiveMenu] = useState<number | null>(null);
 
   const toggleSubMenu = (id: number) => {
@@ -52,6 +59,7 @@ export default function MobileItems({ isOpen, menus, setIsOpen }: MobileMenu) {
               isOpen={isOpen}
               menus={menu.subMenu}
               setIsOpen={setIsOpen}
+              isRoot={false}
             />
           )}
         </li>
