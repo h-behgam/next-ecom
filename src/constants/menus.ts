@@ -1,3 +1,5 @@
+import { Imenu } from "@/types/menu-type";
+
 export const menus: Imenu[] = [
   { id: 1, name: 'خانه', link: '/', position: 1 },
   { id: 2, name: 'محصولات', link: '/products', position: 2 },
