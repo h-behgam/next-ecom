@@ -34,3 +34,12 @@ model Categories {
   image       String
   link        String
 }
+
+model Menus {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  link        String
+  position    Int
+  subMenu     Json?
+}
