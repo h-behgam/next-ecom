@@ -4,12 +4,16 @@ import MobileNavbar from './mobile-navbar';
 import { getAllMenus } from '@/actions/menu-action';
 
 export default async function Menu() {
-  const menuss = await getAllMenus();
+  const allMenus = await getAllMenus();
+  const { error, menus } = allMenus;
+  if (error) {
+    <p className='text-red-500'>منو یافت نشد</p>;
+  }
 
   return (
     <>
-      <DesktopMenu menus={menuss} />
-      <MobileNavbar menus={menuss} />
+      <DesktopMenu menus={menus!} />
+      <MobileNavbar menus={menus!} />
     </>
   );
 }
