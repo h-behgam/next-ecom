@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { MobileMenu } from './mobile-navbar';
 import { Imenu } from '@/types/menu-type';
 
