@@ -4,12 +4,13 @@ import PrismaDB from '@/lib/PrismaDB';
 
 export const getAllMenus = async () => {
   try {
-    const menus = PrismaDB.menus.findMany();
-    if (!menus) {
-      throw new Error('menus not found !!');
-    }
-    return menus;
+    const menus = await PrismaDB.menus.findMany();
+    if (!menus)
+      return { error: { status: 403, message: 'Menu not exist !!!' } };
+
+    return { menus };
   } catch (error) {
-    throw new Error('somting Wrong!!');
+    console.log('error of getAllMenus is:', error);
+    return { error: { status: 500, message: 'خطای سرور' } };
   }
 };
