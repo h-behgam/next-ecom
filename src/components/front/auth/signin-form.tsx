@@ -1,50 +1,55 @@
-import Link from "next/link";
-import CustomInput from "../custom-input";
-import ClientButton from "../client-button";
+import Link from 'next/link';
+import CustomInput from '../custom-input';
+import ClientButton from '../client-button';
 
 export default function SigninTemplate() {
-    const formHandler = async (formData: FormData) => {}
+  const formHandler = async (formData: FormData) => {};
   return (
     <div className='mx-auto w-full max-w-md'>
       <div className='mb-6 text-center'>
-        <h2 className='text-3xl font-bold'>Login</h2>
-        <p>Enter your email below to login to your account</p>
+        <h2 className='text-3xl font-bold'>ورود</h2>
+        <p>لطفا نام کاربری و رمز عبور خود را وارد کنید.</p>
       </div>
-      <form className='' action={formHandler}>
+      <form
+        className=''
+        //   action={formHandler}
+      >
         <div className='mb-2 p-1'>
           <CustomInput
             name='username'
             type='text'
-            placeholder='Username'
+            placeholder='نام کاربری'
             labalName='username'
-            labelTitle='Username'
+            labelTitle='نام کاربری'
             autoComplete='autoComplete'
+            labelClassName='mb-1 block'
           />
         </div>
         <div className='mb-2 p-1'>
           <CustomInput
             name='password'
             type='text'
-            placeholder='Password'
+            placeholder='رمز عبور'
             labalName='password'
-            labelTitle='Password'
+            labelTitle='رمز عبور'
+            labelClassName='mb-1 block'
           />
         </div>
-        <div className='mb-2 text-right'>
+        {/* <div className='mb-2 text-right'>
           <Link
             href={'/forgot-password'}
             className='text-sm text-indigo-700 hover:text-indigo-600'
           >
-            Forgot your password?
+            رمز عبور خود را فراموش کردید
           </Link>
-        </div>
+        </div> */}
         <div>
-          <ClientButton disabled={false}>Sign in</ClientButton>
+          <ClientButton className='w-full rounded-md bg-slate-50 p-3 font-bold' disabled={false}>ورود</ClientButton>
         </div>
       </form>
       <p className='mt-4 text-center'>
-        Don &apos; t have an account? <Link href={'/signup'}>Sign up</Link>
+        حساب کاربری ندارید ؟ <span className='font-semibold text-blue-800'><Link href={'/signup'}>ثبت نام</Link></span>
       </p>
     </div>
-  )
+  );
 }
