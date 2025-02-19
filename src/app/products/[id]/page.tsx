@@ -5,13 +5,36 @@ import Image from 'next/image';
 import { e2p, sp } from '@/lib/replace-number';
 
 // import { products } from '@/constants/products';
-import { getProductByID } from '@/actions/product-action';
+import { getAllProducts, getProductByID } from '@/actions/product-action';
+import { Metadata } from 'next';
 
-export default async function SingleProductPage({
-  params,
-}: {
+type Props = {
   params: Promise<{ id: string }>;
-}) {
+};
+
+// set the metadata
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+
+  const data = await getProductByID(+id);
+  const { product } = data;
+
+  return {
+    title: product?.name,
+  };
+}
+
+export async function generateStaticParams() {
+  try {
+    const products = (await getAllProducts()).products || [];
+    return products.map((product) => ({ id: String(product.id) }));
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
+}
+
+export default async function SingleProductPage({ params }: Props) {
   const { id } = await params;
 
   // const product = products.find((product) => product.id === Number(id));
