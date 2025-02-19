@@ -1,6 +1,12 @@
-import ProductsTemplate from '@/components/front/products';
 import SingleSlide from '@/components/front/single-slide';
+import ProductsTemplate from '@/components/front/products';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'all posts',
+  description: 'You can see all posts here',
+};
 export default function ProductsPage() {
   return (
     <>
