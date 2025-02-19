@@ -7,7 +7,7 @@ export const getAllCategories = async () => {
     if (!categories)
       return { error: { status: 403, message: 'Categories not exist !!!' } };
 
-    return categories;
+    return { categories };
   } catch (error) {
     console.log('error of getAllMenus is:', error);
     return { error: { status: 500, message: 'خطای سرور' } };
