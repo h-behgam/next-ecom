@@ -1,11 +1,15 @@
-import React from 'react';
-import Cart from '../cart';
-import Image from 'next/image';
-import Link from 'next/link';
 import Container from '@/components/ui/container';
-import { products } from '@/constants/products';
+import Cart from '../cart';
 
-export default function Amazings() {
+import Link from 'next/link';
+import Image from 'next/image';
+
+// import { products } from '@/constants/products';
+import { getAllProducts } from '@/actions/product-action';
+
+export default async function Amazings() {
+  const allProducts = await getAllProducts();
+  const { products, error } = allProducts;
   return (
     <Container isFullWidth>
       <div className='my-2 flex w-full justify-between rounded-2xl bg-red-500 p-8'>
@@ -29,6 +33,7 @@ export default function Amazings() {
           </Link>
         </div>
         <div className='lg:gap-x:6 flex gap-x-1 overflow-x-scroll md:gap-x-3 lg:overflow-x-auto'>
+          {error && <p className='text-red-600'>محصولی یافت نشد</p>}
           {products?.map((product) => {
             return (
               <Cart
