@@ -1,8 +1,11 @@
 import SubmitFormButton from '@/components/front/submit-form-button';
-import { products } from '@/constants/products';
-import { e2p, sp } from '@/lib/replace-number';
+
 import Image from 'next/image';
-import React from 'react';
+
+import { e2p, sp } from '@/lib/replace-number';
+
+// import { products } from '@/constants/products';
+import { getProductByID } from '@/actions/product-action';
 
 export default async function SingleProductPage({
   params,
@@ -10,17 +13,27 @@ export default async function SingleProductPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const product = products.find((product) => product.id === Number(id));
-  if (!product) {
-    return <h1>Product not found</h1>;
-  }
+
+  // const product = products.find((product) => product.id === Number(id));
+
+  const data = await getProductByID(+id);
+  const { product, error } = data;
+
+  if (error) return <h1>{error.message}</h1>;
+  if (!product) return <h1>Product not found</h1>;
 
   return (
     <main className='container-home p-main_padding'>
       <div className='flex flex-col items-center gap-y-20 lg:flex-row lg:items-start'>
         {/* product image */}
         <div className='basis-4/12'>
-          <Image src={product.image} alt='product1' width={500} height={500} priority/>
+          <Image
+            src={product.image}
+            alt='product1'
+            width={500}
+            height={500}
+            priority
+          />
         </div>
 
         {/* product details */}
@@ -36,7 +49,7 @@ export default async function SingleProductPage({
               <Image
                 src={'/assets/images/star-icon.svg'}
                 alt='star'
-                className='w-4 h-4'
+                className='h-4 w-4'
                 width={16}
                 height={16}
               />
@@ -58,7 +71,9 @@ export default async function SingleProductPage({
             <div className='box-border p-2'>
               <h5 className='mb-3 font-semibold'>ویژگی ها</h5>
               <ul className='flex flex-wrap gap-3 lg:grid lg:grid-cols-3'>
-                {product.features.map((item) => {
+                {(
+                  product.features as [{ title: string; description: string }]
+                )?.map((item) => {
                   return (
                     <li
                       key={item.title}
