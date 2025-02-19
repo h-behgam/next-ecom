@@ -18,7 +18,7 @@ export default function DesktopMenu({ menus }: { menus: Imenu[] }) {
             })}
           </ul>
         </div>
-        <Link className='mr-auto block p-4' href={'/'}>
+        <Link className='mr-auto block p-4' href={'/signin'}>
           ورود
         </Link>
       </div>
