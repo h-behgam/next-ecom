@@ -1,9 +1,14 @@
+import { getAllCategories } from '@/actions/category-action';
 import Container from '@/components/ui/container';
-import { categories } from '@/constants/categories';
+
+// import { categories } from '@/constants/categories';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function BuyByCategory() {
+export default async function BuyByCategory() {
+  const allCategories = await getAllCategories();
+  const { categories, error } = allCategories;
   return (
     <Container>
       <div className='flex flex-col gap-4'>
@@ -11,7 +16,8 @@ export default function BuyByCategory() {
           خرید بر اساس دسته بندی
         </h2>
         <div className='grid grid-cols-[repeat(auto-fit,_minmax(10rem,_1fr))] place-content-center gap-16 sm:gap-4 md:place-content-between'>
-          {categories.map((category) => (
+          {error && <p className='text-red-600'>دسته بندی یافت نشد!!</p>}
+          {categories?.map((category) => (
             <Link
               href={category.link}
               key={category.id}
