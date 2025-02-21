@@ -23,6 +23,7 @@
 # Zip
 *.rar
 *.zip
+*.sql
 
 # misc
 .DS_Store
