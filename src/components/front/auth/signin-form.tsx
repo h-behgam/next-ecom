@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { toast, ToastContainer } from 'react-toastify';
 import { redirect, useRouter } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
+// import { revalidatePath } from 'next/cache';
 
 export default function SigninTemplate() {
   const router = useRouter();
@@ -57,7 +57,7 @@ export default function SigninTemplate() {
       // router.prefetch('/')
       // router.push('/')
       redirect('/')
-      console.log('user is:', user);
+      // console.log('user is:', user);
     }
   };
   return (
