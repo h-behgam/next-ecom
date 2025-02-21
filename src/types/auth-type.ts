@@ -13,5 +13,5 @@ export interface IsignupError {
 export interface IsigninError {
   username?: string[];
   password?: string[];
-  CredentialsSignin?: string
+  CredentialsSignin?: string;
 }
