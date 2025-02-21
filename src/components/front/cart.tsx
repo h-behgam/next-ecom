@@ -21,7 +21,7 @@ export default function Cart({
     <Link href={`/products/${id}`}>
       <div
         className={cn(
-          'mb-6 flex h-80 w-48 flex-col items-center border-b border-l border-slate-100 p-2 text-sm/5 sm:mb-0 dark:bg-slate-200 dark:text-slate-800',
+          'mb-6 flex h-80 w-48 flex-col items-center border-b border-l border-slate-100 p-2 text-sm/5 sm:mb-0 dark:bg-slate-100 dark:rounded-md dark:text-slate-800',
           {
             'w-40': isHomePage,
             'h-64': isHomePage,

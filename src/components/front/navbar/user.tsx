@@ -9,13 +9,13 @@ export default function UserSection() {
   const session = useSession();
 
   return (
-    <div className='mr-auto mt-2 block h-10 w-32'>
+    <div className='ml-2 mr-auto mt-2 block h-10 w-32'>
       {session.status === 'loading' && <UserSkeleton />}
       {session.status == 'authenticated' && (
         <UserBox name={session.data.user?.name as string} />
       )}
       {session.status == 'unauthenticated' && (
-        <div className='flex h-10 w-32 items-center justify-center rounded-md border '>
+        <div className='flex h-10 w-32 items-center justify-center rounded-md border'>
           <Link className='text-sm' href={'/signin'}>
             ورود | ثبت نام
           </Link>
