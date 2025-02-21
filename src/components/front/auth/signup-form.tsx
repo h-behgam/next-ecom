@@ -26,8 +26,7 @@ export default function SignupTemplate() {
       toast.error(error.message);
     }
     if (error?.zodMessage) setError(error.zodMessage);
-    console.log('id:', id);
-    console.log('error', error);
+    
     if (id) {
       toast.success('حساب شما ایجاد شد.');
       ref.current?.reset();
