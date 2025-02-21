@@ -34,7 +34,7 @@ export default function MobileItems({
         <li key={menu.id} className='bg-slate-50'>
           {menu.subMenu ? (
             <div
-              className='flex cursor-pointer justify-between p-3'
+              className='flex cursor-pointer justify-between p-3 dark:text-slate-800'
               onClick={() => toggleSubMenu(menu.id)}
             >
               {menu.name}
@@ -50,7 +50,7 @@ export default function MobileItems({
             <Link
               href={menu.link}
               onClick={() => setIsOpen(false)}
-              className='flex cursor-pointer justify-between p-3'
+              className='flex cursor-pointer justify-between p-3 dark:text-slate-800'
             >
               {menu.name}
             </Link>

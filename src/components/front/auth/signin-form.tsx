@@ -61,7 +61,7 @@ export default function SigninTemplate() {
     }
   };
   return (
-    <div className='mx-auto w-full max-w-md'>
+    <div className='mx-auto w-full max-w-md dark:bg-slate-800'>
       <ToastContainer />
       <div className='mb-6 text-center'>
         <h2 className='text-3xl font-bold'>ورود</h2>
@@ -104,18 +104,18 @@ export default function SigninTemplate() {
             رمز عبور خود را فراموش کردید
           </Link>
         </div> */}
-        <div>
+        <div className='p-1'>
           <ClientButton
-            className='w-full rounded-md bg-slate-50 p-3 font-bold'
+            className='w-full rounded-md bg-slate-50 p-3 font-bold dark:text-slate-800'
             disabled={false}
           >
             ورود
           </ClientButton>
         </div>
       </form>
-      <p className='mt-4 text-center'>
+      <p className='my-4 text-center'>
         حساب کاربری ندارید ؟{' '}
-        <span className='font-semibold text-blue-800'>
+        <span className='font-semibold text-blue-800 dark:text-sky-500'>
           <Link href={'/signup'}>ثبت نام</Link>
         </span>
       </p>

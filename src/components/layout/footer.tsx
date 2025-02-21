@@ -58,7 +58,7 @@ export default function FooterLayout() {
         </div>
         <div className='mb-10 flex flex-col items-center gap-y-6 md:justify-between lg:flex-row'>
           <div className='mb-4 max-w-4xl lg:mb-0'>
-            <h4 className='mb-4 font-medium text-slate-900 md:text-xl lg:text-2xl'>
+            <h4 className='mb-4 font-medium text-slate-900 md:text-xl lg:text-2xl dark:text-slate-200'>
               فروشگاه اینترنتی ما بررسی، انتخاب و خرید آنلاین
             </h4>
             <p>

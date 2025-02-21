@@ -15,7 +15,7 @@ export default function UserSection() {
         <UserBox name={session.data.user?.name as string} />
       )}
       {session.status == 'unauthenticated' && (
-        <div className='flex h-10 w-32 items-center justify-center rounded-md border'>
+        <div className='flex h-10 w-32 items-center justify-center rounded-md border '>
           <Link className='text-sm' href={'/signin'}>
             ورود | ثبت نام
           </Link>

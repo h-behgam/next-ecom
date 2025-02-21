@@ -8,8 +8,8 @@ export default function BestSellingProducts() {
   return (
     <Container>
       <div className='flex flex-col gap-4'>
-        <h2 className='mb-2 text-center text-xl font-bold text-slate-700 md:text-2xl md:font-medium lg:mb-6'>
-          خرید بر اساس دسته بندی
+        <h2 className='mb-2 text-center text-xl font-bold text-slate-700 md:text-2xl md:font-medium lg:mb-6 dark:text-slate-200'>
+          خرید بر اساس بهترین ها
         </h2>
         <div className='grid auto-cols-fr grid-cols-1 gap-4 lg:grid-cols-2'>
           {bestProducts.map((product) => (

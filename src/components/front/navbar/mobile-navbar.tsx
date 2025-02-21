@@ -28,7 +28,7 @@ export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
       <header className='flex items-center justify-between p-4'>
         <a onClick={() => setIsOpen(!isOpen)}>
           <Image
-            className='block'
+            className='block dark:invert'
             src={'/assets/images/menu-hamburger.svg'}
             alt='logo'
             width={30}
@@ -37,7 +37,7 @@ export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
         </a>
         <a>
           <Image
-            className='block'
+            className='block dark:invert'
             src={'/assets/images/user.svg'}
             alt='logo'
             width={30}

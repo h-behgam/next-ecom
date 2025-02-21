@@ -26,7 +26,7 @@ export default function SignupTemplate() {
       toast.error(error.message);
     }
     if (error?.zodMessage) setError(error.zodMessage);
-    
+
     if (id) {
       toast.success('حساب شما ایجاد شد.');
       ref.current?.reset();
@@ -34,7 +34,7 @@ export default function SignupTemplate() {
   };
 
   return (
-    <div className='mx-auto w-full max-w-md'>
+    <div className='mx-auto w-full max-w-md dark:bg-slate-800'>
       <ToastContainer />
       <div className='mb-6 text-center'>
         <h2 className='text-xl font-bold'>ابتدا ثبت نام کنید.</h2>
@@ -80,18 +80,18 @@ export default function SignupTemplate() {
           )}
         </div>
         {error.confirm && <p className='text-red-600'>{error.confirm}</p>}
-        <div>
+        <div className='p-1'>
           <ClientButton
-            className='w-full rounded-md bg-slate-50 p-3 font-bold'
+            className='w-full rounded-md bg-slate-50 p-3 font-bold dark:text-slate-800'
             disabled={false}
           >
             ثبت نام
           </ClientButton>
         </div>
       </form>
-      <p className='mt-4 text-center'>
+      <p className='my-4 text-center'>
         از قبل اکانت دارید؟{' '}
-        <span className='font-semibold text-blue-800'>
+        <span className='font-semibold text-blue-800 dark:text-sky-500'>
           <Link href={'/signin'}>ورود</Link>
         </span>
       </p>
