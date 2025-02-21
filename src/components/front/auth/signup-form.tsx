@@ -34,10 +34,10 @@ export default function SignupTemplate() {
   };
 
   return (
-    <div className='mx-auto w-full max-w-md dark:bg-slate-800'>
+    <div className='mx-auto w-full max-w-3xl dark:p-4 dark:rounded-lg dark:border border-zinc-800'>
       <ToastContainer />
       <div className='mb-6 text-center'>
-        <h2 className='text-xl font-bold'>ابتدا ثبت نام کنید.</h2>
+        <h2 className='text-xl font-bold mb-4'>ابتدا ثبت نام کنید.</h2>
         <p>لطفا فیلد ها رو به صورت صحیح وارد کنید</p>
       </div>
 
@@ -80,7 +80,7 @@ export default function SignupTemplate() {
           )}
         </div>
         {error.confirm && <p className='text-red-600'>{error.confirm}</p>}
-        <div className='p-1'>
+        <div className='p-1 mt-10'>
           <ClientButton
             className='w-full rounded-md bg-slate-50 p-3 font-bold dark:text-slate-800'
             disabled={false}
