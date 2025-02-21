@@ -1,5 +1,10 @@
-import { Imenu } from '@/types/menu-type';
 import Link from 'next/link';
+
+import { Providerse } from '@/providers/SessionProvider';
+
+import UserSection from './user';
+
+import { Imenu } from '@/types/menu-type';
 
 export default function DesktopMenu({ menus }: { menus: Imenu[] }) {
   return (
@@ -18,9 +23,9 @@ export default function DesktopMenu({ menus }: { menus: Imenu[] }) {
             })}
           </ul>
         </div>
-        <Link className='mr-auto block p-4' href={'/signin'}>
-          ورود
-        </Link>
+        <Providerse>
+          <UserSection />
+        </Providerse>
       </div>
     </nav>
   );
