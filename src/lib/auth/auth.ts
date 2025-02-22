@@ -8,7 +8,7 @@ import { compare } from 'bcrypt';
 export const { auth, handlers, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(PrismaDB),
   secret: process.env.AUTH_SECRET,
-  logger:{error:()=>{}},
+  logger: { error: () => {} },
   session: { strategy: 'jwt' },
   pages: {
     signIn: '/signin',
@@ -30,22 +30,20 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         try {
           const { username, password } = credentials;
 
-          // const { username, password } =
-          // await formSchema.parseAsync(credentials);
           const user = await PrismaDB.user.findUnique({
             where: { username: username as string },
           });
 
-          if (!user) return null
-            // throw new Error('Invalid credentials1.');
+          if (!user) return null;
+          // throw new Error('Invalid credentials1.');
 
           const isPasswordValid = await compare(
             password as string,
             user?.password as string,
           );
 
-          if (!isPasswordValid) return null
-            // throw new Error('Invalid credentials2.');
+          if (!isPasswordValid) return null;
+          // throw new Error('Invalid credentials2.');
           return user;
         } catch (error) {
           console.log('auth error is: ', error);
