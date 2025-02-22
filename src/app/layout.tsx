@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gadget shop",
-  description: "We offer the best experience for eshopping",
+  title: "فروشگاه گجت و لوازم الکترونیکی جدید",
+  description: "ما بهترین تجربه را برای خرید الکترونیکی ارائه می دهیم",
 };
 
 export default function RootLayout({

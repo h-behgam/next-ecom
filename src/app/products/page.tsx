@@ -4,8 +4,8 @@ import ProductsTemplate from '@/components/front/products';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'all posts',
-  description: 'You can see all posts here',
+  title: 'محصولات',
+  description: 'شما می توانید لیست متنوعی از محصولات را اینجا پیدا کنید',
 };
 export default function ProductsPage() {
   return (
