@@ -1,10 +1,3 @@
-import SubmitFormButton from '@/components/front/submit-form-button';
-
-import Image from 'next/image';
-
-import { e2p, sp } from '@/lib/replace-number';
-
-// import { products } from '@/constants/products';
 import { getAllProducts, getProductByID } from '@/actions/product-action';
 import { Metadata } from 'next';
 import ProductTemplate from '@/components/front/product';
@@ -30,7 +23,7 @@ export async function generateStaticParams() {
     const products = (await getAllProducts()).products || [];
     return products.map((product) => ({ id: String(product.id) }));
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.error('Error fetching products:', error);
     return [];
   }
 }
@@ -49,10 +42,6 @@ export default async function SingleProductPage({ params }: Props) {
   return (
     <main className='container-home p-main_padding'>
       <div className='flex flex-col items-center gap-y-20 lg:flex-row lg:items-start'>
-        
-
-        
-
         <ProductTemplate props={product} />
       </div>
     </main>
