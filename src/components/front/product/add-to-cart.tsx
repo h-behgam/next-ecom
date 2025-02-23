@@ -1,12 +1,8 @@
 import { sp } from '@/lib/replace-number';
 import Image from 'next/image';
 import SubmitFormButton from '../submit-form-button';
-import { Product } from '@/types/products-type';
+import { AddToCartProps } from '@/types/products-type';
 
-type AddToCartProps = Omit<
-  Product,
-  'id' | 'stock' | 'features' | 'rate' | 'enName' | 'description'
->;
 export default function AddToCart({ name, image, price }: AddToCartProps) {
   return (
     /* product price */
