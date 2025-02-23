@@ -9,7 +9,7 @@ export default function UserSection() {
   const session = useSession();
 
   return (
-    <div className='ml-2 mr-auto mt-2 block h-10 w-32'>
+    <div className='ml-2 mr-auto mt-2 flex h-10 w-32 justify-end'>
       {session.status === 'loading' && <UserSkeleton />}
       {session.status == 'authenticated' && (
         <UserBox name={session.data.user?.name as string} />

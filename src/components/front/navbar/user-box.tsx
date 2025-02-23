@@ -1,4 +1,4 @@
-'use client'; // اجباری برای کامپوننت‌های کلاینتی
+'use client';
 
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
@@ -30,31 +30,32 @@ export default function UserBox({ name }: { name: string }) {
   }, [pathname, handleClickOutside]);
 
   return (
-    <div className='relative p-2' ref={menuRef}>
+    <div className='relative p-1' ref={menuRef}>
       <button
-        className='flex items-center justify-end'
+        className='flex items-center'
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <Image
           src='/assets/images/user.svg'
           alt='User Icon'
-          width={30}
-          height={30}
+          width={32}
+          height={32}
+          className='h-8 w-8 dark:invert'
         />
         <Image
           src='/assets/images/icons/chevron-down.svg'
           alt='Chevron'
           width={20}
           height={20}
-          className='h-5 w-5 transform transition-transform'
+          className='h-5 w-5 transform transition-transform dark:invert'
         />
       </button>
 
       {isOpen && (
         <div className='absolute left-0 w-52 rounded-lg bg-white p-6 shadow-lg'>
           <ul className='divide-y'>
-            <li className='pb-3'>{name}</li>
-            <li className='py-3'>
+            <li className='pb-3 dark:text-stone-800'>{name}</li>
+            <li className='py-3 dark:text-stone-800'>
               <Link className='flex items-center gap-x-6' href='/dashboard'>
                 <Image
                   src='/assets/images/icons/admin.svg'
@@ -65,7 +66,7 @@ export default function UserBox({ name }: { name: string }) {
                 پنل مدیریت
               </Link>
             </li>
-            <li className='pt-3'>
+            <li className='pt-3 dark:text-stone-800'>
               <button
                 className='flex w-full items-center gap-x-6 text-left'
                 onClick={() => {
@@ -88,82 +89,3 @@ export default function UserBox({ name }: { name: string }) {
     </div>
   );
 }
-
-// import { signOut } from 'next-auth/react';
-// import Image from 'next/image';
-// import Link from 'next/link';
-// import { useRouter } from 'next/navigation';
-// import { useEffect, useState } from 'react';
-
-// export default function UserBox({ name }: { name: string }) {
-//   const [isOpen, setIsOpen] = useState<boolean>(false);
-//   const router = useRouter()
-
-//   const userBpxHandler = () => {
-//     setIsOpen(!isOpen);
-//   };
-
-//   return (
-//     <div className='relative p-2'>
-//       <a className='flex items-center justify-end' onClick={userBpxHandler}>
-//         <Image
-//           className='block'
-//           src={'/assets/images/user.svg'}
-//           alt='logo'
-//           width={30}
-//           height={30}
-//         />
-//         <Image
-//           src='/assets/images/icons/chevron-down.svg'
-//           alt='chevron-down'
-//           width={20}
-//           height={20}
-//           className={`transition-transform} h-5 w-5 transform`}
-//         />
-//       </a>
-//       {isOpen && (
-//         <div className='absolute left-0 w-52 rounded-lg p-6 shadow-lg'>
-//           <ul className='divide-y'>
-//             <li className='pb-3'>{name}</li>
-//             <li className='py-3'>
-//               <Link
-//                 className='flex cursor-pointer items-center gap-x-6'
-//                 href={'/dashboard'}
-//                 onClick={() => {
-//                   setIsOpen(false);
-//                 }}
-//               >
-//                 <Image
-//                   src={'/assets/images/icons/admin.svg'}
-//                   alt='signOut'
-//                   width={24}
-//                   height={24}
-//                   className='h-6 w-6'
-//                 />
-//                 پنل مدیریت
-//               </Link>
-//             </li>
-//             <li className='pt-3'>
-//               <a
-//                 className='flex cursor-pointer items-center gap-x-6'
-//                 onClick={() => {
-//                   setIsOpen(false);
-//                   signOut();
-//                 }}
-//               >
-//                 <Image
-//                   src={'/assets/images/icons/signout.svg'}
-//                   alt='signOut'
-//                   width={24}
-//                   height={24}
-//                   className='h-6 w-6'
-//                 />
-//                 <span>خروج</span>
-//               </a>
-//             </li>
-//           </ul>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
