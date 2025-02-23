@@ -9,10 +9,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { toast, ToastContainer } from 'react-toastify';
-import { redirect, useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 export default function SigninTemplate() {
-  const router = useRouter();
   const [field, setField] = useState(String);
   const [zodError, setZodError] = useState<IsigninError>({
     username: [],
