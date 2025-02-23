@@ -1,6 +1,8 @@
-import { getAllProducts, getProductByID } from '@/actions/product-action';
 import { Metadata } from 'next';
+
 import ProductTemplate from '@/components/front/product';
+
+import { getAllProducts, getProductByID } from '@/actions/product-action';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -30,8 +32,6 @@ export async function generateStaticParams() {
 
 export default async function SingleProductPage({ params }: Props) {
   const { id } = await params;
-
-  // const product = products.find((product) => product.id === Number(id));
 
   const data = await getProductByID(+id);
   const { product, error } = data;
