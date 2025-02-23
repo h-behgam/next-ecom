@@ -1,10 +1,6 @@
-import { Product } from '@/types/products-type';
+import { ProductImageProps } from '@/types/products-type';
 import Image from 'next/image';
 
-type ProductImageProps = Omit<
-  Product,
-  'id' | 'stock' | 'features' | 'rate' | 'enName' | 'description' | 'price'
->;
 export default function ProductImage({ name, image }: ProductImageProps) {
   return (
     /* product image */
