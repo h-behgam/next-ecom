@@ -14,17 +14,23 @@ export type MobileMenu = {
 export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    // جلوگیری از اسکرول هنگام باز بودن منو با استفاده از useLayoutEffect
-    useLayoutEffect(() => {
-        document.body.classList.toggle('overflow-hidden', isOpen);
-        // پاک‌سازی هنگام خروج از کامپوننت
-        return () => {
-          if (isOpen) document.body.classList.remove('overflow-hidden');
-        };
-      }, [isOpen]);
+  // جلوگیری از اسکرول هنگام باز بودن منو با استفاده از useLayoutEffect
+  useLayoutEffect(() => {
+    document.body.classList.toggle('overflow-hidden', isOpen);
+    // پاک‌سازی هنگام خروج از کامپوننت
+    return () => {
+      if (isOpen) document.body.classList.remove('overflow-hidden');
+    };
+  }, [isOpen]);
 
   return (
     <div className='relative block h-full md:hidden'>
+      <div
+        className={cn(
+          'fixed top-[62] left-0 h-dvh w-dvw -translate-x-full transform bg-zinc-800/80 transition-transform duration-500 ease-in-out',
+          { 'translate-x-0': isOpen },
+        )}
+      ></div>
       <header className='flex items-center justify-between p-4'>
         <a onClick={() => setIsOpen(!isOpen)}>
           <Image
@@ -35,7 +41,7 @@ export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
             height={30}
           />
         </a>
-        <a>
+        <a onClick={() => alert()}>
           <Image
             className='block dark:invert'
             src={'/assets/images/user.svg'}
