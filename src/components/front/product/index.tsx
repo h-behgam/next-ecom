@@ -1,9 +1,9 @@
-import { Product } from '@/types/products-type';
 import AddToCart from './add-to-cart';
 import ProductImage from './product-image';
 import ProductDetails from './product-details';
 
-//{description,enName,features,id,image,name,price,rate,stock}
+import { Product } from '@/types/products-type';
+
 export default function ProductTemplate({ props }: { props: Product }) {
   return (
     <>
