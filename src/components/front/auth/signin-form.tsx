@@ -10,7 +10,6 @@ import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { toast, ToastContainer } from 'react-toastify';
 import { redirect, useRouter } from 'next/navigation';
-// import { revalidatePath } from 'next/cache';
 
 export default function SigninTemplate() {
   const router = useRouter();
@@ -21,9 +20,9 @@ export default function SigninTemplate() {
   });
 
   const formHandler = async (formData: FormData) => {
-    // reset zod 
+    // reset zod
     setZodError({ username: [], password: [] });
-    setField('')
+    setField('');
     // zod validation
     const { data, error } = await SigninUser.safeParseAsync(
       Object.fromEntries(formData),
@@ -52,19 +51,14 @@ export default function SigninTemplate() {
         return;
       }
       toast.success('وارد شدید.');
-      router.refresh()
-      // revalidatePath('/')
-      // router.prefetch('/')
-      // router.push('/')
-      redirect('/')
-      // console.log('user is:', user);
+      redirect('/');
     }
   };
   return (
-    <div className='mx-auto w-full max-w-3xl dark:p-4 dark:rounded-lg dark:border border-zinc-800'>
+    <div className='mx-auto w-full max-w-3xl border-zinc-800 dark:rounded-lg dark:border dark:p-4'>
       <ToastContainer />
       <div className='mb-6 text-center'>
-        <h2 className='text-3xl font-bold mb-4'>ورود</h2>
+        <h2 className='mb-4 text-3xl font-bold'>ورود</h2>
         <p>لطفا نام کاربری و رمز عبور خود را وارد کنید.</p>
       </div>
       <form className='' action={formHandler}>
@@ -104,7 +98,7 @@ export default function SigninTemplate() {
             رمز عبور خود را فراموش کردید
           </Link>
         </div> */}
-        <div className='p-1 mt-10'>
+        <div className='mt-10 p-1'>
           <ClientButton
             className='w-full rounded-md bg-slate-50 p-3 font-bold dark:text-slate-800'
             disabled={false}
