@@ -28,7 +28,7 @@ export default async function Amazings() {
             height={88}
             className='mb-6'
           />
-          <Link href={'#'} className='block w-32 text-xl text-slate-100'>
+          <Link href={'/products'} className='block w-32 text-xl text-slate-100'>
             {'مشاهده همه >'}
           </Link>
         </div>
