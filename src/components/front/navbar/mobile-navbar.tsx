@@ -1,38 +1,36 @@
 'use client';
 import Image from 'next/image';
-import { useLayoutEffect, useState } from 'react';
+import { useContext, useLayoutEffect } from 'react';
 import MobileItems from './mobile-items';
 import { cn } from '@/lib/tailwind-helper';
 import { Imenu } from '@/types/menu-type';
-
-export type MobileMenu = {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
-  menus: Imenu[];
-};
+import { MenuContext } from '@/context/MenuContext';
 
 export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const context = useContext(MenuContext);
+  if (!context) throw new Error('Menu must be used within an AppProvider');
+  const { menuState, menuDispatch } = context;
 
   // جلوگیری از اسکرول هنگام باز بودن منو با استفاده از useLayoutEffect
   useLayoutEffect(() => {
-    document.body.classList.toggle('overflow-hidden', isOpen);
+    document.body.classList.toggle('overflow-hidden', menuState.isOpen);
     // پاک‌سازی هنگام خروج از کامپوننت
     return () => {
-      if (isOpen) document.body.classList.remove('overflow-hidden');
+      if (menuState.isOpen) document.body.classList.remove('overflow-hidden');
     };
-  }, [isOpen]);
+  }, [menuState.isOpen]);
 
   return (
     <div className='relative block h-full md:hidden'>
       <div
         className={cn(
-          'fixed top-[62] left-0 h-dvh w-dvw -translate-x-full transform bg-zinc-800/80 transition-transform duration-500 ease-in-out',
-          { 'translate-x-0': isOpen },
+          'fixed left-0 top-[62] h-dvh w-dvw -translate-x-full transform bg-zinc-800/80 transition-transform duration-500 ease-in-out',
+          { 'translate-x-0': menuState.isOpen },
         )}
       ></div>
       <header className='flex items-center justify-between p-4'>
-        <a onClick={() => setIsOpen(!isOpen)}>
+        {/* <a onClick={() => setmenuState.isOpen(!menuState.isOpen)}> */}
+        <a onClick={() => menuDispatch({ type: 'TOGGLE_MENU' })}>
           <Image
             className='block dark:invert'
             src={'/assets/images/menu-hamburger.svg'}
@@ -54,10 +52,10 @@ export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
       <div
         className={cn(
           `fixed left-0 h-dvh w-2/3 -translate-x-full transform bg-white shadow-lg transition-transform duration-500 ease-in-out`,
-          { 'translate-x-0': isOpen },
+          { 'translate-x-0': menuState.isOpen },
         )}
       >
-        {isOpen && <MobileItems setIsOpen={setIsOpen} isOpen menus={menus} />}
+        {menuState.isOpen && <MobileItems menus={menus} />}
       </div>
     </div>
   );

@@ -1,26 +1,27 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useLayoutEffect, useState } from 'react';
-import { MobileMenu } from './mobile-navbar';
+import { useContext, useLayoutEffect, useState } from 'react';
 import { Imenu } from '@/types/menu-type';
+import { MenuContext } from '@/context/MenuContext';
 
 export default function MobileItems({
-  isOpen,
   menus,
-  setIsOpen,
   isRoot = true,
-}: MobileMenu & { isRoot?: boolean }) {
+}: { menus: Imenu[] } & { isRoot?: boolean }) {
+  const context = useContext(MenuContext);
+  if (!context) throw new Error('Menu must be used within an AppProvider');
+  const { menuState, menuDispatch } = context;
   // کنترل اسکرول فقط در سطح ریشه
   useLayoutEffect(() => {
     if (isRoot) {
-      if (isOpen) {
+      if (menuState.isOpen) {
         document.body.classList.add('overflow-hidden');
       } else {
         document.body.classList.remove('overflow-hidden');
       }
       return () => document.body.classList.remove('overflow-hidden');
     }
-  }, [isOpen, isRoot]);
+  }, [menuState.isOpen, isRoot]);
 
   const [activeMenu, setActiveMenu] = useState<number | null>(null);
 
@@ -49,7 +50,7 @@ export default function MobileItems({
           ) : (
             <Link
               href={menu.link}
-              onClick={() => setIsOpen(false)}
+              onClick={() => menuDispatch({ type: 'CLOSE_MENU' })}
               className='flex cursor-pointer justify-between p-3 dark:text-slate-800'
             >
               {menu.name}
@@ -57,9 +58,7 @@ export default function MobileItems({
           )}
           {menu.subMenu && activeMenu === menu.id && (
             <MobileItems
-              isOpen={isOpen}
               menus={menu.subMenu as unknown as Imenu[]}
-              setIsOpen={setIsOpen}
               isRoot={false}
             />
           )}
