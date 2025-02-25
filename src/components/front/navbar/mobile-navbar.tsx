@@ -7,6 +7,7 @@ import { Imenu } from '@/types/menu-type';
 import { MenuContext } from '@/context/MenuContext';
 
 export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
+  // set useContext
   const context = useContext(MenuContext);
   if (!context) throw new Error('Menu must be used within an AppProvider');
   const { menuState, menuDispatch } = context;
