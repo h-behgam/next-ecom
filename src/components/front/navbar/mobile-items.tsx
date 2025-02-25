@@ -1,16 +1,23 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { useContext, useLayoutEffect, useState } from 'react';
-import { Imenu } from '@/types/menu-type';
+import Image from 'next/image';
+
 import { MenuContext } from '@/context/MenuContext';
+import { useContext, useLayoutEffect, useState } from 'react';
+
+import { Imenu } from '@/types/menu-type';
 
 export default function MobileItems({
   menus,
   isRoot = true,
 }: { menus: Imenu[] } & { isRoot?: boolean }) {
+  // set useContext
   const context = useContext(MenuContext);
   if (!context) throw new Error('Menu must be used within an AppProvider');
   const { menuState, menuDispatch } = context;
+
+  // set useState
+  const [activeMenu, setActiveMenu] = useState<number | null>(null);
+
   // کنترل اسکرول فقط در سطح ریشه
   useLayoutEffect(() => {
     if (isRoot) {
@@ -23,8 +30,7 @@ export default function MobileItems({
     }
   }, [menuState.isOpen, isRoot]);
 
-  const [activeMenu, setActiveMenu] = useState<number | null>(null);
-
+  // toggle sub menu
   const toggleSubMenu = (id: number) => {
     setActiveMenu((prev) => (prev === id ? null : id));
   };
