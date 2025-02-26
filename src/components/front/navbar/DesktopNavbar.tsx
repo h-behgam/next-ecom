@@ -1,8 +1,6 @@
 import Link from 'next/link';
 
-import { Providerse } from '@/providers/SessionProvider';
-
-import UserSection from './user';
+import UserSection from './UserSection';
 
 import { Imenu } from '@/types/menu-type';
 
@@ -23,9 +21,7 @@ export default function DesktopMenu({ menus }: { menus: Imenu[] }) {
             })}
           </ul>
         </div>
-        <Providerse>
-          <UserSection />
-        </Providerse>
+        <UserSection />
       </div>
     </nav>
   );

@@ -1,16 +1,21 @@
 'use client';
 import Image from 'next/image';
-import { useContext, useLayoutEffect } from 'react';
-import MobileItems from './mobile-items';
+import { useContext, useLayoutEffect, useState } from 'react';
+import MobileItems from './MobileItems';
 import { cn } from '@/lib/tailwind-helper';
 import { Imenu } from '@/types/menu-type';
 import { MenuContext } from '@/context/MenuContext';
+import { useSession } from 'next-auth/react';
+import UserBox from './DesktopUserBox';
 
 export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
   // set useContext
   const context = useContext(MenuContext);
   if (!context) throw new Error('Menu must be used within an AppProvider');
   const { menuState, menuDispatch } = context;
+
+  // get session
+  const session = useSession();
 
   // جلوگیری از اسکرول هنگام باز بودن منو با استفاده از useLayoutEffect
   useLayoutEffect(() => {
@@ -21,6 +26,7 @@ export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
     };
   }, [menuState.isOpen]);
 
+  const [first, setFirst] = useState(false);
   return (
     <div className='relative block h-full md:hidden'>
       <div
@@ -40,15 +46,23 @@ export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
             height={30}
           />
         </a>
-        <a onClick={() => alert()}>
-          <Image
-            className='block dark:invert'
-            src={'/assets/images/user.svg'}
-            alt='logo'
-            width={30}
-            height={30}
-          />
+        <a
+          onClick={() => {
+            menuDispatch({ type: 'CLOSE_MENU' });
+            setFirst(true);
+          }}
+        >
+          {!first && (
+            <Image
+              className='block dark:invert'
+              src={'/assets/images/user.svg'}
+              alt='logo'
+              width={30}
+              height={30}
+            />
+          )}
         </a>
+        {first && <UserBox name={session.data?.user?.name as string} />}
       </header>
       <div
         className={cn(

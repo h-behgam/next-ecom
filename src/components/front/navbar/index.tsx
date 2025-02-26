@@ -1,6 +1,7 @@
 // import { menus } from '@/constants/menus';
-import DesktopMenu from './desktop-navbar';
-import MobileNavbar from './mobile-navbar';
+import { Providerse } from '@/providers/SessionProvider';
+import DesktopMenu from './DesktopNavbar';
+import MobileNavbar from './MobileNavbar';
 import { getAllMenus } from '@/actions/menu-action';
 
 export default async function Menu() {
@@ -12,8 +13,10 @@ export default async function Menu() {
 
   return (
     <>
-      <DesktopMenu menus={menus!} />
-      <MobileNavbar menus={menus!} />
+      <Providerse>
+        <DesktopMenu menus={menus!} />
+        <MobileNavbar menus={menus!} />
+      </Providerse>
     </>
   );
 }

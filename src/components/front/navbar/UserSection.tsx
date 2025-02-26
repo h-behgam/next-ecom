@@ -1,6 +1,6 @@
 'use client';
-import UserBox from './user-box';
-import UserSkeleton from './user-skeleton';
+import UserBox from './DesktopUserBox';
+import UserSkeleton from './DesktopUserSkeleton';
 
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
