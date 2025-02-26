@@ -1,9 +1,9 @@
 'use client';
+import UserBoxItems from './UserBoxItems';
+import UserBoxIcons from './UserBoxIcons';
 
-import { signOut } from 'next-auth/react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
 import { useEffect, useState, useRef, useCallback } from 'react';
 
 export default function UserBox({ name }: { name: string }) {
@@ -31,61 +31,9 @@ export default function UserBox({ name }: { name: string }) {
 
   return (
     <div className='relative p-1' ref={menuRef}>
-      <button
-        className='flex items-center'
-        onClick={() => setIsOpen((prev) => !prev)}
-      >
-        <Image
-          src='/assets/images/user.svg'
-          alt='User Icon'
-          width={32}
-          height={32}
-          className='h-8 w-8 dark:invert'
-        />
-        <Image
-          src='/assets/images/icons/chevron-down.svg'
-          alt='Chevron'
-          width={20}
-          height={20}
-          className='h-5 w-5 transform transition-transform dark:invert'
-        />
-      </button>
+      <UserBoxIcons setIsOpen={setIsOpen} />
 
-      {isOpen && (
-        <div className='absolute left-0 w-52 rounded-lg bg-white p-6 shadow-lg'>
-          <ul className='divide-y'>
-            <li className='pb-3 dark:text-stone-800'>{name}</li>
-            <li className='py-3 dark:text-stone-800'>
-              <Link className='flex items-center gap-x-6' href='/dashboard'>
-                <Image
-                  src='/assets/images/icons/admin.svg'
-                  alt='Dashboard'
-                  width={24}
-                  height={24}
-                />
-                پنل مدیریت
-              </Link>
-            </li>
-            <li className='pt-3 dark:text-stone-800'>
-              <button
-                className='flex w-full items-center gap-x-6 text-left'
-                onClick={() => {
-                  setIsOpen(false);
-                  signOut();
-                }}
-              >
-                <Image
-                  src='/assets/images/icons/signout.svg'
-                  alt='Sign Out'
-                  width={24}
-                  height={24}
-                />
-                خروج
-              </button>
-            </li>
-          </ul>
-        </div>
-      )}
+      {isOpen && <UserBoxItems name={name} setIsOpen={setIsOpen} />}
     </div>
   );
 }
