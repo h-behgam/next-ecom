@@ -1,9 +1,9 @@
-import Menu from '../front/navbar/Index';
+import Navbar from '../front/navbar/Navbar';
 
 export default function HeaderLayout() {
   return (
     <header>
-      <Menu />
+      <Navbar />
     </header>
   );
 }
