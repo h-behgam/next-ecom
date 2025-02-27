@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-import UserSection from './UserSection';
+import DesktopUserSection from './DesktopUserSection';
 
 import { Imenu } from '@/types/menu-type';
 
-export default function DesktopMenu({ menus }: { menus: Imenu[] }) {
+export default function DesktopNavbar({ menus }: { menus: Imenu[] }) {
   return (
     <nav className='container-home hidden md:block'>
       <div className='flex justify-between'>
@@ -21,7 +21,7 @@ export default function DesktopMenu({ menus }: { menus: Imenu[] }) {
             })}
           </ul>
         </div>
-        <UserSection />
+        <DesktopUserSection isDesktopMenu={true} />
       </div>
     </nav>
   );
