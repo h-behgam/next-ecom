@@ -20,9 +20,14 @@ export default function UserBoxIcons({ isDesktopMenu }: UserBoxIconsProps) {
     <button
       className='flex items-center'
       onClick={() => {
-        menuDispatch({ type: 'CLOSE_MENU' });
-        UserDispatch({ type: 'TOGGLE_USER_MENU' });
-        console.log(UserState.isOpen);
+        if (menuState.isOpen) {
+          setTimeout(() => {
+            UserDispatch({ type: 'TOGGLE_USER_MENU' });
+          }, 300);
+          menuDispatch({ type: 'CLOSE_MENU' });
+        } else {
+          UserDispatch({ type: 'TOGGLE_USER_MENU' });
+        }
       }}
     >
       <Image

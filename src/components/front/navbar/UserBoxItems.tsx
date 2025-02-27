@@ -42,7 +42,13 @@ export default function UserBoxItems({ isDesktopMenu }: UserBoxItemsProps) {
               {session.data.user.name}
             </li>
             <li className='py-3 dark:text-stone-800'>
-              <Link className='flex items-center gap-x-6' href='/dashboard' onClick={()=>{UserDispatch({type:'CLOSE_USER_MENU'})}}>
+              <Link
+                className='flex items-center gap-x-6'
+                href='/dashboard'
+                onClick={() => {
+                  UserDispatch({ type: 'CLOSE_USER_MENU' });
+                }}
+              >
                 <Image
                   src='/assets/images/icons/admin.svg'
                   alt='Dashboard'
@@ -72,7 +78,14 @@ export default function UserBoxItems({ isDesktopMenu }: UserBoxItemsProps) {
           </>
         ) : (
           <li>
-            <Link href={'/signin'} onClick={()=>{UserDispatch({type:'CLOSE_USER_MENU'})}} >ورود</Link>{' '}
+            <Link
+              href={'/signin'}
+              onClick={() => {
+                UserDispatch({ type: 'CLOSE_USER_MENU' });
+              }}
+            >
+              ورود
+            </Link>{' '}
           </li>
         )}
       </ul>

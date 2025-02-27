@@ -5,7 +5,11 @@ import UserSkeleton from './DesktopUserSkeleton';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
-export default function UserSection({isDesktopMenu}: {isDesktopMenu:boolean}) {
+export default function UserSection({
+  isDesktopMenu,
+}: {
+  isDesktopMenu: boolean;
+}) {
   const session = useSession();
 
   return (
