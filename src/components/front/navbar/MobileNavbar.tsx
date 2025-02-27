@@ -7,7 +7,6 @@ import { useContext, useLayoutEffect } from 'react';
 
 import { cn } from '@/lib/tailwind-helper';
 import { Imenu } from '@/types/menu-type';
-import { useSession } from 'next-auth/react';
 import { MenuContext } from '@/context/MenuContext';
 import { UserContext } from '@/context/UserContext';
 
@@ -20,9 +19,6 @@ export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
   const userContext = useContext(UserContext);
   if (!userContext) throw new Error('Menu must be used within an AppProvider');
   const { UserState, UserDispatch } = userContext;
-
-  // get session
-  const session = useSession();
 
   // جلوگیری از اسکرول هنگام باز بودن منو با استفاده از useLayoutEffect
   useLayoutEffect(() => {

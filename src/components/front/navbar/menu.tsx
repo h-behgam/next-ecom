@@ -1,14 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import DesktopNavbar from './DesktopNavbar';
 import MobileNavbar from './MobileNavbar';
 
-interface Props {
-  menus: any;
-}
+import { useEffect, useState } from 'react';
 
-const ResponsiveNavbar = ({ menus }: Props) => {
+import { Imenu } from '@/types/menu-type';
+
+const ResponsiveNavbar = ({ menus }: { menus: Imenu[] }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {

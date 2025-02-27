@@ -5,7 +5,7 @@ import ResponsiveNavbar from './menu';
 export default async function Menu() {
   const { menus, error } = await getAllMenus();
   if (error) {
-    <p className='text-red-500'>منو یافت نشد</p>;
+    return <p className='text-red-500'>منو یافت نشد</p>;
   }
 
   return (

@@ -14,7 +14,7 @@ export default function UserBoxIcons({ isDesktopMenu }: UserBoxIconsProps) {
   // set UserContext
   const userContext = useContext(UserContext);
   if (!userContext) throw new Error('Menu must be used within an AppProvider');
-  const { UserState, UserDispatch } = userContext;
+  const { UserDispatch } = userContext;
 
   return (
     <button
