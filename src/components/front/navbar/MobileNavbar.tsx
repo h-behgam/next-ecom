@@ -30,11 +30,11 @@ export default function MobileNavbar({ menus }: { menus: Imenu[] }) {
   }, [menuState.isOpen]);
 
   return (
-    <div className='ssss relative block h-full md:hidden'>
+    <div className='relative block h-full md:hidden'>
       <div
         className={cn(
           'fixed left-0 top-[64] h-dvh w-dvw -translate-x-full transform bg-zinc-800/80 transition-transform duration-300 ease-in-out',
-          { 'translate-x-0': menuState.isOpen },
+          { 'translate-x-0': menuState.isOpen || UserState.isOpen },
         )}
       ></div>
       <header className='flex items-center justify-between p-4'>
