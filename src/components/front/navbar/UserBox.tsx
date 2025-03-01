@@ -34,7 +34,7 @@ export default function UserBox({ isDesktopMenu }: UserBoxProps) {
 
   return isDesktopMenu ? (
     <div
-      className={cn('relative h-fit p-1', { 'p-0': !isDesktopMenu })}
+      className={cn('relative h-fit p-1')}
       ref={menuRef}
     >
       <UserBoxIcons isDesktopMenu={isDesktopMenu} />
