@@ -1,12 +1,11 @@
-import './globals.css';
-
-import HeaderLayout from '@/components/layout/header';
-import FooterLayout from '@/components/layout/footer';
+import './../globals.css';
 
 import { Geist, Geist_Mono } from 'next/font/google';
 import type { Metadata } from 'next';
 
 import ContextProvidersLayout from '@/providers/ContextProviders';
+
+import FrontLayout from '@/components/layout/FrontLayout';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,9 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-iranSans antialiased`}
       >
         <ContextProvidersLayout>
-          <HeaderLayout />
-          {children}
-          <FooterLayout />
+          <FrontLayout>{children}</FrontLayout>
         </ContextProvidersLayout>
       </body>
     </html>
