@@ -4,7 +4,7 @@ import FrontHeaderLayout from './FrontHeader';
 type FrontLayoutProps = {
   children: React.ReactNode;
 };
-export default function FrontLayout(children: FrontLayoutProps) {
+export default function FrontLayout({ children }: FrontLayoutProps) {
   return (
     <>
       <FrontHeaderLayout />
