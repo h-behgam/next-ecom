@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function FooterLayout() {
+export default function FrontFooterLayout() {
   return (
     <footer className='mt-10'>
       <div className='container-home flex flex-col items-center p-main_padding sm:items-stretch'>
