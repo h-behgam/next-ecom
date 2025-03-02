@@ -1,3 +1,5 @@
+import './../globals.css';
+
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { Metadata } from 'next';
 
