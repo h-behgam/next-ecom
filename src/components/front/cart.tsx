@@ -35,7 +35,7 @@ export default function Cart({
         <div className='mb-2 block h-36 w-36'>
           <Image
             className='mx-auto object-contain'
-            src={image}
+            src={image.length > 1 ? image : '/assets/images/product3.webp'}
             alt='product picture'
             width={isHomePage ? 128 : 236}
             height={isHomePage ? 128 : 236}
