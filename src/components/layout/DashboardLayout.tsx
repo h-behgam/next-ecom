@@ -6,10 +6,9 @@ type DashboardLayoutProps = {
 };
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <div>
-      DashboardLayout
+    <div className='container-home mx-auto flex gap-x-3'>
       <DashboardSidebar />
-      <DashboardMain />
+      <DashboardMain>{children}</DashboardMain>
     </div>
   );
 }
