@@ -1,6 +1,7 @@
 import { string, z } from "zod";
 
 export const SignupUser = z.object({
+    name: string({required_error: 'نام باید وارد شود'}).min(2).trim(),
     username: string({required_error: 'نام کاربری باید وارد شود'}).min(4).trim(),
     password: string().min(2).trim(),
     confirmPassword: string().min(2).trim(),
