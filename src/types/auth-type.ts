@@ -1,9 +1,10 @@
 export type Isignup = Record<
-  'username' | 'password' | 'confirmPassword',
+  'name' | 'username' | 'password' | 'confirmPassword',
   string
 >;
 
 export interface IsignupError {
+  name?: string[];
   username?: string[];
   password?: string[];
   confirmPassword?: string[];
