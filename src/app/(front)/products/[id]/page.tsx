@@ -20,6 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// revalidate dynamic page every 1 hour
+export const revalidate = 60 * 60;
+
 export async function generateStaticParams() {
   try {
     const products = (await getAllProducts()).products || [];
