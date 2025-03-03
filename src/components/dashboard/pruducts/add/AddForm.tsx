@@ -1,16 +1,12 @@
 import { createProduct } from '@/actions/product-action';
 import CustomInput from '@/components/front/custom-input'
 import SubmitFormButton from '@/components/front/submit-form-button'
-import { revalidatePath } from 'next/cache';
 
 export default function AddForm() {
   const formHandler = async (formData:FormData) => { 
     'use server'
     const {error} = await createProduct(formData)
-    if (!error)
-      revalidatePath('/products')
-    
-    
+    if (!error) return       
    }
   return (
     <div className="">
@@ -40,7 +36,7 @@ export default function AddForm() {
         <CustomInput name={'features'} type='string' labelTitle='ویژگی ها' labalName='features'/>
       </div>
       <div className="mt-10">
-        <SubmitFormButton classname={'rounded-md bg-slate-400 w-full'}>ثبت</SubmitFormButton>
+        <SubmitFormButton classname={'rounded-md bg-slate-500 w-full'}>ثبت</SubmitFormButton>
       </div>
     </form>
     </div>
