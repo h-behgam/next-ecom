@@ -9,6 +9,11 @@ export default function DashboardSidebar() {
       <nav>
         <ul>
           <li className='py-2'>
+            <Link className='font-semibold' href={'/'}>
+              بازگشست به صفحه اصلی
+            </Link>
+          </li>
+          <li className='py-2'>
             <Link className='font-semibold' href={'/dashboard/pruduct/add'}>
               افزودن محصول
             </Link>
