@@ -5,6 +5,7 @@ export const vaziri = localfont({
   style: "normal",
   weight: "100 900",
   variable: "--font-vazir",
+  
 });
 export const iranSans = localfont({
   src: [
@@ -35,4 +36,5 @@ export const iranSans = localfont({
     },
   ],
   variable: "--IRANSans",
+  preload: true
 });
