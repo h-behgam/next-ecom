@@ -15,6 +15,7 @@ export default async function sitemap() {
     }));
     return [...routes, ...dynamicRoutes];
   } catch (error) {
+    console.error('Error fetching products:', error);
     return [];
   }
 }
