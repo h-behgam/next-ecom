@@ -1,5 +1,6 @@
 import PrismaDB from '@/lib/PrismaDB';
 import { Product } from '@/types/products-type';
+import { revalidatePath } from 'next/cache';
 
 export const getAllProducts = async () => {
   try {
@@ -33,10 +34,6 @@ export const createProduct = async (formData: FormData) => {
   const { name, enName, description, image, price, rate, stock } =
     Object.fromEntries(formData) as unknown as Omit<Product, 'id'>;
 
-  // const price2 = Number(price);
-  // const rate2 = Number(rate);
-  // const stock2 = Number(stock);
-
   try {
     const product = await PrismaDB.products.create({
       data: {
@@ -52,6 +49,7 @@ export const createProduct = async (formData: FormData) => {
     if (!product)
       return { error: { status: 403, message: 'محصول اضافه نشد !!!' } };
 
+    revalidatePath('/products');
     return { product };
   } catch (error) {
     console.log('error in create product is: ', { error });
@@ -70,5 +68,6 @@ export const deleteById = async (id: number) => {
     return { product };
   } catch (error) {
     console.log('error in product delete is:', error);
+    return { error: { status: 500, message: 'خطای سرور' } };
   }
 };
