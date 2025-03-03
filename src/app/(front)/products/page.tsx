@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   title: 'محصولات',
   description: 'شما می توانید لیست متنوعی از محصولات را اینجا پیدا کنید',
 };
+//just for demo
+export const revalidate =600
 export default function ProductsPage() {
   return (
     <>
