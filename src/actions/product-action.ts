@@ -1,3 +1,4 @@
+"use server"
 import PrismaDB from '@/lib/PrismaDB';
 import { Product } from '@/types/products-type';
 import { revalidatePath } from 'next/cache';
