@@ -4,25 +4,29 @@ import CustomInput from '../custom-input';
 import ClientButton from '../client-button';
 import { addUser } from '@/actions/auth-action';
 import { useRef, useState } from 'react';
-import { IsignupError } from '@/types/auth-type';
+import { Isignup, IsignupError } from '@/types/auth-type';
 import { toast, ToastContainer } from 'react-toastify';
 
 export default function SignupTemplate() {
   const ref = useRef<HTMLFormElement>(null);
-  const [field, setField] = useState(String);
+  const [field, setField] = useState<
+    Omit<Isignup, 'password' | 'confirmPassword'>
+  >({ name: '', username: '' });
   const [error, setError] = useState<IsignupError>({
+    name: [],
     username: [],
     password: [],
     confirmPassword: [],
     confirm: [],
   });
   const formHandler = async (formData: FormData) => {
+    const name = formData.get('name') as string;
     const username = formData.get('username') as string;
     const { id, error } = await addUser(formData);
 
     // throw error if user not added
     if (error) {
-      setField(username);
+      setField({ name, username });
       toast.error(error.message);
     }
     if (error?.zodMessage) setError(error.zodMessage);
@@ -34,14 +38,27 @@ export default function SignupTemplate() {
   };
 
   return (
-    <div className='mx-auto w-full max-w-3xl dark:p-4 dark:rounded-lg dark:border border-zinc-800'>
+    <div className='mx-auto w-full max-w-3xl border-zinc-800 dark:rounded-lg dark:border dark:p-4'>
       <ToastContainer />
       <div className='mb-6 text-center'>
-        <h2 className='text-xl font-bold mb-4'>ابتدا ثبت نام کنید.</h2>
+        <h2 className='mb-4 text-xl font-bold'>ابتدا ثبت نام کنید.</h2>
         <p>لطفا فیلد ها رو به صورت صحیح وارد کنید</p>
       </div>
 
       <form className='' action={formHandler} ref={ref}>
+        <div className='mb-2 p-1'>
+          <CustomInput
+            name='name'
+            type='text'
+            placeholder='نام'
+            labalName='name'
+            labelTitle='نام'
+            autoComplete='autoComplete'
+            labelClassName='mb-1 block'
+            defaultValue={field.name}
+          />
+          {error.name && <p className='text-red-600'>{error.name}</p>}
+        </div>
         <div className='mb-2 p-1'>
           <CustomInput
             name='username'
@@ -51,7 +68,7 @@ export default function SignupTemplate() {
             labelTitle='نام کاربری'
             autoComplete='autoComplete'
             labelClassName='mb-1 block'
-            defaultValue={field}
+            defaultValue={field.username}
           />
           {error.username && <p className='text-red-600'>{error.username}</p>}
         </div>
@@ -80,7 +97,7 @@ export default function SignupTemplate() {
           )}
         </div>
         {error.confirm && <p className='text-red-600'>{error.confirm}</p>}
-        <div className='p-1 mt-10'>
+        <div className='mt-10 p-1'>
           <ClientButton
             className='w-full rounded-md bg-slate-50 p-3 font-bold dark:text-slate-800'
             disabled={false}
