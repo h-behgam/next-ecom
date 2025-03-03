@@ -15,7 +15,7 @@ export const addUser = async (formData: FormData) => {
       };
 
     // destructure data
-    const { username, password } = data;
+    const { name, username, password } = data;
 
     // check user exist
     const existUser = await PrismaDB.user.findUnique({ where: { username } });
@@ -27,7 +27,7 @@ export const addUser = async (formData: FormData) => {
 
     // add new user
     const user = await PrismaDB.user.create({
-      data: { username, password: hashedPassword },
+      data: { name, username, password: hashedPassword },
     });
     if (!user)
       return { error: { status: 403, message: 'user not created !!!' } };
