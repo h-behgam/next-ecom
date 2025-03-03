@@ -77,7 +77,9 @@ export default function UserBoxItems({ isDesktopMenu }: UserBoxItemsProps) {
             </li>
           </>
         ) : (
-          <li>
+          <>
+          <li className='pb-3 dark:text-stone-800'>لطفا وارد حساب خود شوید</li>
+          <li className='py-3 dark:text-stone-800'>
             <Link
               href={'/signin'}
               onClick={() => {
@@ -87,6 +89,7 @@ export default function UserBoxItems({ isDesktopMenu }: UserBoxItemsProps) {
               ورود
             </Link>{' '}
           </li>
+          </>
         )}
       </ul>
     </div>
