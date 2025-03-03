@@ -1,3 +1,4 @@
+"use server"
 import PrismaDB from '@/lib/PrismaDB';
 
 export const getAllCategories = async () => {
