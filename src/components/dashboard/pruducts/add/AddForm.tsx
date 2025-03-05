@@ -21,7 +21,7 @@ export default function AddForm() {
         <CustomInput name={'description'} type='string' labelTitle='توضیحات' labalName='description'/>
       </div>
       <div className="mb-6">
-        <CustomInput name={'image'} type='string' labelTitle='آدرس عکس' labalName='image'/>
+        <CustomInput name={'image'} type='string' labelTitle='آدرس عکس آدرس نمونه: "/assets/images/product2.webp"' labalName='image'/>
       </div>
       <div className="mb-6">
         <CustomInput name={'price'} type='string' labelTitle='قیمت' labalName='price'/>
