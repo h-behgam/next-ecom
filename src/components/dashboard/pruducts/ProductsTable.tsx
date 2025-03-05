@@ -7,9 +7,9 @@ export default async function ProductsTable() {
   const { products, error } = await getAllProducts();
   if (error) return <p className='text-red-600'>محصولی یافت نشد!</p>;
   return (
-    <div className='p-4'>
+    <div className='overflow-x-auto p-2 md:p-4'>
       <ToastContainer />
-      <table className='w-full table-auto'>
+      <table className='w-full table-auto overflow-x-scroll'>
         <thead>
           <tr>
             <th className='border-b border-gray-200 p-4 text-right'>ردیف</th>
@@ -23,10 +23,10 @@ export default async function ProductsTable() {
             return (
               <tr key={product.id}>
                 <td className='border-b border-gray-200 p-4 text-gray-500'>
-                  {index}
+                  {index+1}
                 </td>
                 <td
-                  className='border-b border-gray-200 p-4 text-gray-500'
+                  className='min-w-52 border-b border-gray-200 p-4 text-gray-500'
                   title={product.name}
                 >
                   {product.name.slice(0, 30)}
