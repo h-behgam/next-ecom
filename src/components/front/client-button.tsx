@@ -6,8 +6,6 @@ interface InfoButtonProps {
   children: ReactNode;
   disabled: boolean;
   className?: string;
-  // onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  // onClick?: React.MouseEvent<HTMLButtonElement, MouseEvent>;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
