@@ -1,12 +1,10 @@
 'use client';
 
 import { deleteById, productsPageRevalidate } from '@/actions/product-action';
-import { error } from 'console';
-import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { ReactNode } from 'react';
 import { useFormStatus } from 'react-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 interface InfoButtonProps {
   children: ReactNode;
@@ -14,9 +12,6 @@ interface InfoButtonProps {
   dataId: number;
 }
 
-type eventType = {
-  event: React.MouseEvent<HTMLButtonElement, MouseEvent>;
-};
 export default function ProductsDeleteButton({
   children,
   className,
