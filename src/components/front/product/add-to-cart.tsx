@@ -1,7 +1,7 @@
 import { sp } from '@/lib/replace-number';
 import Image from 'next/image';
-import SubmitFormButton from '../submit-form-button';
 import { AddToCartProps } from '@/types/products-type';
+import AddToCartButton from './AddToCartButton';
 
 export default function AddToCart({ name, image, price }: AddToCartProps) {
   return (
@@ -21,9 +21,9 @@ export default function AddToCart({ name, image, price }: AddToCartProps) {
       </div>
       <p className='py-4 text-green-500'>۱۰۰۰+ فروش در هفته گذشته</p>
       <div className='pt-5'>
-        <SubmitFormButton classname={'bg-rose-500 w-full'}>
+        <AddToCartButton classname={'bg-rose-500 w-full'}>
           افزودن به سبد
-        </SubmitFormButton>
+        </AddToCartButton>
       </div>
     </div>
   );
