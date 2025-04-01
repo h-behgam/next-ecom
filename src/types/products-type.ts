@@ -33,7 +33,7 @@ Product,
 
 export type AddToCartProps = Omit<
 Product,
-'id' | 'stock' | 'features' | 'rate' | 'enName' | 'description'
+'stock' | 'features' | 'rate' | 'enName' | 'description'
 >;
 
 export type ProductDetailsProps = Omit<
