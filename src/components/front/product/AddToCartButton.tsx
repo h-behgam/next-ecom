@@ -6,23 +6,29 @@ import { useFormStatus } from 'react-dom';
 import { FaPlus } from 'react-icons/fa6';
 import { FaMinus } from 'react-icons/fa6';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { useContext } from 'react';
+import { CartContext } from '@/context/CartContext';
 
 export default function AddToCartButton({
   classname,
   children,
   onClick,
   existInCart,
+  id
 }: {
   // classname?: React.CSSProperties;
   classname?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode | string;
   existInCart?: boolean;
+  id:number
 }) {
   const { pending } = useFormStatus();
-
+  const context = useContext(CartContext)
+  if (!context) throw new Error('CartContext must be used within CartProvider')
+    const {cartState,cartDispatch} = context
   return (
-    <>
+    existInCart ? (
       <button
         type='submit'
         disabled={pending}
@@ -56,12 +62,13 @@ export default function AddToCartButton({
         )}
         {children}
       </button>
+    ) : (
 
       <div className='flex w-28 items-center justify-between rounded-md border p-3'>
-        <FaPlus />
-        5
+        <FaPlus onClick={() => {cartDispatch({type:'ADD_TO_CART',payload:{id}})}} className='cursor-pointer' />
+        {cartState.find((item) => item.id === id) ? cartState.find((item) => item.id === id)?.qty : 10}
         {existInCart ? <FaRegTrashAlt /> : <FaMinus />}
       </div>
-    </>
+    )
   );
 }
