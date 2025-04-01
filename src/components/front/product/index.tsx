@@ -16,7 +16,7 @@ export default function ProductTemplate({ props }: { props: Product }) {
         description={props.description}
         features={props.features}
       />
-      <AddToCart image={props.image} name={props.name} price={props.price} />
+      <AddToCart image={props.image} name={props.name} price={props.price} id={props.id} />
     </>
   );
 }
