@@ -1,6 +1,7 @@
 'use client';
 import UserBox from './UserBox';
 import UserSkeleton from './DesktopUserSkeleton';
+import { IoCartOutline } from 'react-icons/io5';
 
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
@@ -13,7 +14,7 @@ export default function UserSection({
   const session = useSession();
 
   return (
-    <div className='ml-2 mr-auto mt-2 flex h-10 w-32 justify-end'>
+    <div className='ml-2 mr-auto mt-2 flex h-10 w-44 justify-end'>
       {session.status === 'loading' && <UserSkeleton />}
       {session.status == 'authenticated' && (
         <UserBox isDesktopMenu={isDesktopMenu} />
@@ -25,6 +26,10 @@ export default function UserSection({
           </Link>
         </div>
       )}
+      <span className='mx-3 mt-2 hidden h-6 w-px bg-neutral-200 lg:block'></span>
+      <div className='p-2'>
+        <IoCartOutline size={25} />
+      </div>
     </div>
   );
 }
