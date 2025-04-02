@@ -68,21 +68,23 @@ export default function AddToCartButton({
         onClick={() => {
           cartDispatch({ type: 'INCREASE_QTY', payload: { id } });
         }}
-        className='cursor-pointer'
+        className='cursor-pointer dark:invert'
       />
-      {cartState.find((item) => item.id === id)
-        ? cartState.find((item) => item.id === id)?.qty
-        : 0}
+      <span className='dark:invert'>
+        {cartState.find((item) => item.id === id)
+          ? cartState.find((item) => item.id === id)?.qty
+          : 0}
+      </span>
       {qty?.qty != 1 ? (
         <FaMinus
-          className='cursor-pointer'
+          className='cursor-pointer dark:invert'
           onClick={() => {
             cartDispatch({ type: 'DECREASE_QTY', payload: { id } });
           }}
         />
       ) : (
         <FaRegTrashAlt
-          className='cursor-pointer'
+          className='cursor-pointer dark:invert'
           onClick={() => {
             cartDispatch({ type: 'REMOVE_TO_CART', payload: { id } });
           }}
