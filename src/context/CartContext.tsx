@@ -8,33 +8,58 @@ interface CartProvideProps {
 // تعریف نوع State برای سبد خرید
 interface CartState {
   id: number;
-  qty: number;
+  qty?: number;
 }
 
 // مقدار اولیه State
-const initialState: CartState = { id: 0, qty: 0 };
+const initialState: CartState[] = [];
 
 // تعریف نوع Action‌ ها برای سبد خرید
 type CartActions = {
-  type: 'ADD_TO_CART' | 'REMOVE_TO_CART' | 'UPDATE_QTY' | 'CLEAR_CART';
-  payload?: CartState;
+  type:
+    | 'ADD_TO_CART'
+    | 'REMOVE_TO_CART'
+    | 'INCREASE_QTY'
+    | 'DECREASE_QTY'
+    | 'CLEAR_CART';
+  payload: CartState;
 };
 
 // تعریف نوع مقدار Context
 type CartContextType = {
-  cartState: CartState;
+  cartState: CartState[];
   cartDispatch: Dispatch<CartActions>;
 };
 
 // ایجاد Reducer برای مدیریت سبد خرید
-const cartReducer = (state: CartState, action: CartActions) => {
+const cartReducer = (state: CartState[], action: CartActions) => {
   switch (action.type) {
     case 'ADD_TO_CART':
-      return { ...state };
+      return [...state, { id: action.payload.id, qty: 1 }];
     case 'REMOVE_TO_CART':
-      return { ...state };
-    case 'UPDATE_QTY':
-      return { ...state };
+      const isLastOne =
+        state.find((item) => item.id === action.payload?.id)?.qty === 1;
+
+      if (isLastOne)
+        return state.filter((item) => item.id != action.payload.id);
+
+      return state.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, qty: item.qty ? item.qty - 1 : 0 }
+          : item,
+      );
+    case 'INCREASE_QTY':
+      return state.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, qty: item.qty ? item.qty + 1 : 0 }
+          : item,
+      );
+    case 'DECREASE_QTY':
+      return state.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, qty: item.qty ? item.qty - 1 : 0 }
+          : item,
+      );
     case 'CLEAR_CART':
       return { ...state };
 
