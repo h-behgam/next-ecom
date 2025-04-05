@@ -8,18 +8,20 @@ import { FaMinus } from 'react-icons/fa6';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { useContext } from 'react';
 import { CartContext } from '@/context/CartContext';
+import { AddToCartProps } from '@/types/products-type';
 
 export default function AddToCartButton({
   classname,
   children,
-  id,
+  props,
 }: {
   // classname?: React.CSSProperties;
   classname?: string;
   children: React.ReactNode | string;
-  id: number;
+  props: AddToCartProps;
 }) {
   const { pending } = useFormStatus();
+  const { id, name, price, image } = props;
 
   const context = useContext(CartContext);
   if (!context) throw new Error('CartContext must be used within CartProvider');
@@ -31,7 +33,7 @@ export default function AddToCartButton({
       type='submit'
       disabled={pending}
       onClick={() => {
-        cartDispatch({ type: 'ADD_TO_CART', payload: { id } });
+        cartDispatch({ type: 'ADD_TO_CART', payload: { id, name, price, image } });
       }}
       className={cn(
         'bg-second_color hover:bg-hover_color flex items-center justify-center gap-x-4 rounded-lg px-7 py-2 text-white duration-300 disabled:bg-gray-400',
@@ -66,7 +68,7 @@ export default function AddToCartButton({
     <div className='flex w-28 items-center justify-between rounded-md border p-3'>
       <FaPlus
         onClick={() => {
-          cartDispatch({ type: 'INCREASE_QTY', payload: { id } });
+          cartDispatch({ type: 'INCREASE_QTY', payload: { id, name, price, image } });
         }}
         className='cursor-pointer dark:invert'
       />
@@ -79,14 +81,14 @@ export default function AddToCartButton({
         <FaMinus
           className='cursor-pointer dark:invert'
           onClick={() => {
-            cartDispatch({ type: 'DECREASE_QTY', payload: { id } });
+            cartDispatch({ type: 'DECREASE_QTY', payload: { id, name, price, image } });
           }}
         />
       ) : (
         <FaRegTrashAlt
           className='cursor-pointer dark:invert'
           onClick={() => {
-            cartDispatch({ type: 'REMOVE_TO_CART', payload: { id } });
+            cartDispatch({ type: 'REMOVE_TO_CART', payload: { id, name, price, image } });
           }}
         />
       )}
