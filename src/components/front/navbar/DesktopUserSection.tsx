@@ -7,6 +7,10 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useContext } from 'react';
 import { CartContext } from '@/context/CartContext';
+import Image from 'next/image';
+import AddToCartButton from '../product/AddToCartButton';
+import { sp } from '@/lib/replace-number';
+import DesktopCart from './DesktopCart';
 
 export default function UserSection({
   isDesktopMenu,
@@ -14,9 +18,14 @@ export default function UserSection({
   isDesktopMenu: boolean;
 }) {
   const session = useSession();
+
+  // get cCartContext
   const context = useContext(CartContext);
   if (!context) throw new Error('CartContext must be used within CartProvider');
   const { cartState } = context;
+
+  // fetching cart item
+
   return (
     <div className='ml-2 mr-auto mt-2 flex h-10 w-44 justify-end'>
       {session.status === 'loading' && <UserSkeleton />}
@@ -31,13 +40,18 @@ export default function UserSection({
         </div>
       )}
       <span className='mx-3 mt-2 hidden h-6 w-px bg-neutral-200 lg:block'></span>
-      <div className='relative p-2'>
-        <IoCartOutline size={25} />
-        {cartState.length > 0 && (
-          <span className='absolute bottom-0 right-0 flex h-4 w-4 items-center justify-center rounded-md bg-red-500 text-xs'>
-            {cartState.length}
-          </span>
-        )}
+      <div className='group/cart relative'>
+        <Link className='' href={'#'}>
+          <div className='relative p-2'>
+            <IoCartOutline size={25} />
+            {cartState.length > 0 && (
+              <span className='absolute bottom-0 right-0 flex h-4 w-4 items-center justify-center rounded-md bg-red-500 text-xs'>
+                {cartState.length}
+              </span>
+            )}
+          </div>
+        </Link>
+        <DesktopCart />
       </div>
     </div>
   );
