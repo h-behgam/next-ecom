@@ -15,21 +15,24 @@ interface CartState {
 }
 
 // مقدار اولیه State
-const initialState: CartState[] = JSON.parse(
-  localStorage.getItem('cart') || '[]',
-);
+const initialState: CartState[] = [];
 
 // تعریف نوع Action‌ ها برای سبد خرید
-type CartActions = {
-  type:
-    | 'ADD_TO_CART'
-    | 'REMOVE_TO_CART'
-    | 'INCREASE_QTY'
-    | 'DECREASE_QTY'
-    | 'SET_FROM_LOCAL'
-    | 'CLEAR_CART';
+type AddToCartAction = {
+  type: 'ADD_TO_CART' | 'REMOVE_TO_CART' | 'INCREASE_QTY' | 'DECREASE_QTY';
   payload: CartState;
 };
+
+type SetFromLocalAction = {
+  type: 'SET_FROM_LOCAL';
+  payload: CartState[];
+};
+
+type ClearCartAction = {
+  type: 'CLEAR_CART';
+};
+
+type CartActions = AddToCartAction | SetFromLocalAction | ClearCartAction;
 
 // تعریف نوع مقدار Context
 type CartContextType = {
@@ -75,7 +78,8 @@ const cartReducer = (state: CartState[], action: CartActions) => {
           ? { ...item, qty: item.qty ? item.qty - 1 : 0 }
           : item,
       );
-
+    case 'SET_FROM_LOCAL':
+      return Array.isArray(action.payload) ? action.payload : state;
     case 'CLEAR_CART':
       return { ...state };
 
@@ -95,6 +99,20 @@ export const CartProvider: React.FC<CartProvideProps> = ({
 }: CartProvideProps) => {
   const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
 
+  // فراخوانی سبد خرید در صورت وجود در localStorage و ذخیره در context
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      try {
+        const parsedCart = JSON.parse(storedCart) as CartState[];
+        cartDispatch({ type: 'SET_FROM_LOCAL', payload: parsedCart });
+      } catch (e) {
+        console.error('Error parsing cart from localStorage:', e);
+      }
+    }
+  }, []);
+
+  // دخیره Cart در localStorage
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartState));
   }, [cartState]);
