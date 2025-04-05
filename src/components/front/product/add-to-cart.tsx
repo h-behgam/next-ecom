@@ -21,7 +21,7 @@ export default function AddToCart({ id, name, image, price }: AddToCartProps) {
       </div>
       <p className='py-4 text-green-500'>۱۰۰۰+ فروش در هفته گذشته</p>
       <div className='pt-5'>
-        <AddToCartButton id={id} classname={'bg-rose-500 w-full'}>
+        <AddToCartButton props={{id,name,price,image}} classname={'bg-rose-500 w-full'}>
           افزودن به سبد
         </AddToCartButton>
       </div>
