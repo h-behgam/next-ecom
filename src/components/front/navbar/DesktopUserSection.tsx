@@ -1,16 +1,13 @@
 'use client';
 import UserBox from './UserBox';
+import DesktopCart from './DesktopCart';
 import UserSkeleton from './DesktopUserSkeleton';
 import { IoCartOutline } from 'react-icons/io5';
 
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
 import { useContext } from 'react';
+import { useSession } from 'next-auth/react';
 import { CartContext } from '@/context/CartContext';
-import Image from 'next/image';
-import AddToCartButton from '../product/AddToCartButton';
-import { sp } from '@/lib/replace-number';
-import DesktopCart from './DesktopCart';
 
 export default function UserSection({
   isDesktopMenu,
