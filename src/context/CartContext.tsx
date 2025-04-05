@@ -1,4 +1,4 @@
-import { createContext, Dispatch, useReducer } from 'react';
+import { createContext, Dispatch, useEffect, useReducer } from 'react';
 
 // تعریف `Provider` برای `CartContext`
 interface CartProvideProps {
@@ -9,10 +9,15 @@ interface CartProvideProps {
 interface CartState {
   id: number;
   qty?: number;
+  name: string;
+  price: number;
+  image: string;
 }
 
 // مقدار اولیه State
-const initialState: CartState[] = [];
+const initialState: CartState[] = JSON.parse(
+  localStorage.getItem('cart') || '[]',
+);
 
 // تعریف نوع Action‌ ها برای سبد خرید
 type CartActions = {
@@ -21,6 +26,7 @@ type CartActions = {
     | 'REMOVE_TO_CART'
     | 'INCREASE_QTY'
     | 'DECREASE_QTY'
+    | 'SET_FROM_LOCAL'
     | 'CLEAR_CART';
   payload: CartState;
 };
@@ -35,7 +41,16 @@ type CartContextType = {
 const cartReducer = (state: CartState[], action: CartActions) => {
   switch (action.type) {
     case 'ADD_TO_CART':
-      return [...state, { id: action.payload.id, qty: 1 }];
+      return [
+        ...state,
+        {
+          id: action.payload.id,
+          qty: 1,
+          price: action.payload.price,
+          name: action.payload.name,
+          image: action.payload.image,
+        },
+      ];
     case 'REMOVE_TO_CART':
       const isLastOne =
         state.find((item) => item.id === action.payload?.id)?.qty === 1;
@@ -60,6 +75,7 @@ const cartReducer = (state: CartState[], action: CartActions) => {
           ? { ...item, qty: item.qty ? item.qty - 1 : 0 }
           : item,
       );
+
     case 'CLEAR_CART':
       return { ...state };
 
@@ -78,6 +94,11 @@ export const CartProvider: React.FC<CartProvideProps> = ({
   children,
 }: CartProvideProps) => {
   const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartState));
+  }, [cartState]);
+
   return (
     <CartContext.Provider value={{ cartState, cartDispatch }}>
       {children}
